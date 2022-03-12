@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1d1f22;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  /*--color-primary: #009d86;*/
+  --color-primary: #5ece7b;
+  --color-secondary: #0e0d0d;
+  --color-dark: #2b2b2b;
+  --color-grey: #8d8f9a;
+  --color-grey-dark: #707070;
+  --color-white: #ffffff;
+  --color-danger: #e02b2b;
+  --color-green: rgb(72, 167, 72);
+  --color-black: #1d1f22;
+
+  /*shadows*/
+  --shadow-card: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  --shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  --shadow-light: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --shadow--right-down: 0.5rem 0.5rem 1rem rgba(10, 10, 20, 0.04);
+  --shadow-dark: 0 0rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: inherit;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.myFade {
+  animation: myFadeAni 0.5s forwards;
+}
+
+@keyframes myFadeAni {
+  from {
+    opacity: 0;
+    pointer-events: none;
+  }
+  to {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.margin__zero {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}

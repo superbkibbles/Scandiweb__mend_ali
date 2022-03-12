@@ -1,0 +1,9 @@
+.main {
+  padding: 0 101px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    padding: 0 0;
+  }
+}

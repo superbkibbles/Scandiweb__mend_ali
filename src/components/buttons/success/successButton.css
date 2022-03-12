@@ -1,0 +1,16 @@
+.btn__success {
+  display: block;
+  padding: 13px 36px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  transition: box-shadow 0.2s ease;
+}
+
+.btn__success:hover {
+  box-shadow: var(--shadow-light);
+}
+
+.btn__success:active {
+  box-shadow: var(--shadow-card);
+}

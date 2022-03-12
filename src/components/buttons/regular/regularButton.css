@@ -1,0 +1,16 @@
+.btn__regular {
+  display: block;
+  padding: 13px 36px;
+  border: 1px solid var(--color-black);
+  color: var(--color-black);
+  font-weight: 600;
+  transition: box-shadow .2s ease;
+}
+
+.btn__regular:hover {
+    box-shadow: var(--shadow-light);
+}
+
+.btn__regular:active {
+    box-shadow: var(--shadow-card);
+}

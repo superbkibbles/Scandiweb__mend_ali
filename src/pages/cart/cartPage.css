@@ -1,0 +1,23 @@
+.cart-page {
+  width: 100%;
+  min-height: calc(100vh - 150px);
+  overflow-x: hidden;
+  width: 90%;
+}
+
+.cart-page__head {
+  font-size: 32px;
+  margin-bottom: 59px;
+  font-weight: 700;
+  z-index: -1;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .cart-page {
+    width: 100%;
+  }
+  .cart-page__head {
+    text-align: center;
+  }
+}
