@@ -26,7 +26,7 @@ class CartPage extends React.Component {
                 }
                 attributes={product.product.attributes}
                 selectedArtibutes={product.artibutes}
-                img={product.product.gallery[0]}
+                img={product.product.gallery}
                 count={product.count}
               />
             ))}

@@ -10,8 +10,79 @@ import {
 import "./cartCard.css";
 
 class CartCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeImages: {},
+    };
+  }
   onAttributeClick = (productID, id, attributeID) => {
     this.props.changeArtibutes({ productID, id, attributeID });
+  };
+
+  handleLeftArrow = (id, length) => {
+    if (!this.state.activeImages[id])
+      return this.setState((prevState) => {
+        return {
+          ...prevState,
+          activeImages: { ...prevState.activeImages, [id]: length - 1 },
+        };
+      });
+
+    if (this.state.activeImages[id] < 1) {
+      return this.setState((prevState) => {
+        return {
+          ...prevState,
+          activeImages: {
+            ...prevState.activeImages,
+            [id]: length - 1,
+          },
+        };
+      });
+    }
+
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        activeImages: {
+          ...prevState.activeImages,
+          [id]: this.state.activeImages[id] - 1,
+        },
+      };
+    });
+
+  };
+
+  handleRightArrow = (id, length) => {
+    if (!this.state.activeImages[id])
+      return this.setState((prevState) => {
+        return {
+          ...prevState,
+          activeImages: { ...prevState.activeImages, [id]: 1 },
+        };
+      });
+
+    if (this.state.activeImages[id] > length - 2) {
+      return this.setState((prevState) => {
+        return {
+          ...prevState,
+          activeImages: {
+            ...prevState.activeImages,
+            [id]: 0,
+          },
+        };
+      });
+    }
+
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        activeImages: {
+          ...prevState.activeImages,
+          [id]: this.state.activeImages[id] + 1,
+        },
+      };
+    });
   };
 
   _renderArrtibutes(attributes, selectedArtibutes, productID) {
@@ -103,15 +174,27 @@ class CartCard extends React.Component {
               onClick={() => count > 1 && decrementCount(id, count)}
             />
           </div>
-          <img
-            style={{
-              height: "185px",
-              width: "141px",
-              objectFit: "contain",
-            }}
-            src={img}
-            alt="prod"
-          />
+          <div
+            style={{ position: "relative", height: "185px", width: "141px" }}
+          >
+            <div
+              className="left-arrow"
+              onClick={() => this.handleLeftArrow(id, img.length)}
+            />
+            <img
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+              }}
+              src={img[this.state.activeImages[id]] ?? img[0]}
+              alt="prod"
+            />
+            <div
+              className="right-arrow"
+              onClick={() => this.handleRightArrow(id, img.length)}
+            />
+          </div>
         </div>
       </div>
     );
