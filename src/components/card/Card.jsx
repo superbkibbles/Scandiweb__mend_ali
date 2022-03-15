@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./card.css";
 // import pic from "./baby.jpg";
@@ -41,21 +41,19 @@ class Card extends React.Component {
     );
   }
   render() {
-    const { title, price, inactive, img, category, id, attributes } =
+    const { title, price, inactive, img, category, id, attributes, navigate } =
       this.props;
+
     return (
       <div className={`main-card ${inactive ? "main-card__inactive" : ""}`}>
         <div
-          style={{
-            width: "354px",
-            height: "330px",
-            marginBottom: "24px",
-            position: "relative",
-          }}
+          className="main-card__container"
+          onClick={() => navigate(`/${category}/product/${id}`)}
         >
           <img
             width={"100%"}
             height={"100%"}
+            alt="product"
             style={{
               objectFit: "contain",
             }}
@@ -76,13 +74,14 @@ class Card extends React.Component {
               OUT OF STOCK
             </p>
           )}
-          <Link
-            to={`/${category}/product/${id}`}
+          <div
             className="main-card__cart"
-            style={inactive ? { cursor: "not-allowed" } : {}}
+            onClick={(e) => {
+              e.preventDefault();
+            }}
           >
             <img src={cartIcon} alt="" />
-          </Link>
+          </div>
         </div>
         <p
           className={"main-card__title"}
@@ -115,4 +114,9 @@ class Card extends React.Component {
   }
 }
 
-export default memo(Card);
+// export default memo(Card);
+
+export default memo((props) => {
+  const navigate = useNavigate();
+  return <Card navigate={navigate} {...props} />;
+});

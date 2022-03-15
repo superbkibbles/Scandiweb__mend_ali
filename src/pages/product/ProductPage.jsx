@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import ReactHtmlParser from "react-html-parser";
 
 import client from "../../client";
 import { addToCart } from "../../actions";
@@ -9,7 +10,6 @@ import SuccessButton from "../../components/buttons/success/SuccessButton";
 import { GET_PRODUCT_BY_ID } from "../../gql/queries";
 
 import "./productPage.css";
-import RegularButton from "../../components/buttons/regular/RegularButton";
 
 class ProductPage extends React.Component {
   constructor(props) {
@@ -95,11 +95,8 @@ class ProductPage extends React.Component {
   };
 
   render() {
-    const { currency, cart } = this.props;
+    const { currency } = this.props;
     const { product, activeImg } = this.state;
-    const productIndex = cart.products.findIndex(
-      (el) => el.product.id === this.props.params.id
-    );
     const price = product.prices?.filter(
       (el) => el.currency.symbol === currency?.activeCurrency
     )[0];
@@ -126,37 +123,18 @@ class ProductPage extends React.Component {
         <div className="product-page__details">
           <p className="product-page__title">{product.name}</p>
           <p className="product-page__subtitle">{product.brand}</p>
-
           {this._renderArrtibutes(product?.attributes)}
-
           <p className="product-page__text">price:</p>
           <p className="product-page__price">
             {price?.currency.symbol}
             {price?.amount}
           </p>
-
-          {productIndex === -1 ? (
-            <SuccessButton
-              onClick={this.handleAddToCart}
-              title="ADD TO CART"
-              style={{ width: "100%", padding: "16px 0", marginBottom: "40px" }}
-            />
-          ) : (
-            <RegularButton
-              title="ADDED TO CART"
-              style={{
-                width: "100%",
-                padding: "16px 0",
-                marginBottom: "40px",
-                cursor: "context-menu",
-              }}
-            />
-          )}
-
-          <div
-            className="product-page__desc"
-            dangerouslySetInnerHTML={{ __html: product.description }}
+          <SuccessButton
+            onClick={this.handleAddToCart}
+            title="ADD TO CART"
+            style={{ width: "100%", padding: "16px 0", marginBottom: "40px" }}
           />
+          <div> {ReactHtmlParser(product.description)} </div>
         </div>
       </div>
     );

@@ -32,13 +32,15 @@ class Nav extends React.Component {
   }
 
   onCartClick = () => {
-    const { cart, openCloseCart } = this.props;
+    const { cart, openCloseCart,openCloseDropdown } = this.props;
     openCloseCart(!cart.isOpen);
+    openCloseDropdown(false);
   };
 
   render() {
     const { categories } = this.state;
-    const { currency, openCloseDropdown, changeCurrency, cart } = this.props;
+    const { currency, openCloseDropdown, changeCurrency, cart, openCloseCart } =
+      this.props;
 
     return (
       <nav className="nav">
@@ -59,7 +61,7 @@ class Nav extends React.Component {
           </div>
 
           <div className="nav__item nav__item-logo">
-            <Link to={'/all'}>
+            <Link to={"/all"}>
               <img className="nav__item__logo" src={logo} alt="Logo" />
             </Link>
           </div>
@@ -74,6 +76,7 @@ class Nav extends React.Component {
               className="currency"
               onClick={() => {
                 openCloseDropdown(!currency?.isOpen);
+                openCloseCart(false);
               }}
             >
               {currency.activeCurrency}

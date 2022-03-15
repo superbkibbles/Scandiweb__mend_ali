@@ -56,7 +56,8 @@ class MiniCart extends React.Component {
               <div className="total__container">
                 <p>Total</p>
                 <p style={{ fontWeight: 700 }}>
-                  ${this.totalPrice().toFixed(2)}
+                  {currency?.activeCurrency}
+                  {this.totalPrice().toFixed(2)}
                 </p>
               </div>
 
@@ -66,7 +67,6 @@ class MiniCart extends React.Component {
                   onClick={() => {
                     openCloseCart(false);
                     navigate("/cart");
-                    
                   }}
                 />
                 <SuccessButton title="CHECK OUT" />

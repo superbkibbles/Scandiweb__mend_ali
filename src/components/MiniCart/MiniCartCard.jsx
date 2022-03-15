@@ -1,7 +1,12 @@
 import React, { memo } from "react";
 
 import "./miniCartCard.css";
-import { incrementCount, decrementCount, changeArtibutes, removeProduct } from "../../actions";
+import {
+  incrementCount,
+  decrementCount,
+  changeArtibutes,
+  removeProduct,
+} from "../../actions";
 import { connect } from "react-redux";
 
 class MiniCartCard extends React.Component {
@@ -65,17 +70,22 @@ class MiniCartCard extends React.Component {
       id,
       i,
       cart,
-      removeProduct
+      removeProduct,
     } = this.props;
     const count = cart.products[i].count;
     return (
       <div className="mini-cart__card">
-        <div style={{position: 'absolute', right: 0, top: 0, cursor: 'pointer'}} onClick={() => removeProduct(id)}>x</div>
+        <div
+          style={{ position: "absolute", right: 0, top: 0, cursor: "pointer" }}
+          onClick={() => removeProduct(id)}
+        >
+          x
+        </div>
         <div className="details">
           <div className="title">{title}</div>
           <div className="price">
             {price.currency.symbol}
-            {Number(price.amount * count).toFixed(2)}
+            {Number(price.amount).toFixed(2)}
           </div>
           {this._renderArrtibutes(attributes, selectedArtibutes, id)}
         </div>
@@ -109,5 +119,5 @@ export default connect(mapStateToProps, {
   incrementCount,
   decrementCount,
   changeArtibutes,
-  removeProduct
+  removeProduct,
 })(memo(MiniCartCard));
