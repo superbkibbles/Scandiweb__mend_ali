@@ -53,6 +53,15 @@
   position: relative;
 }
 
+.currency-up {
+  transform: scaleY(-1);
+  margin-top: 5px;
+}
+
+.currency-down {
+  margin-top: "5px";
+}
+
 .number-of-items {
   font-family: Roboto;
   width: 20px;
@@ -68,6 +77,11 @@
   justify-content: center;
   align-items: center;
   top: -10px;
+}
+
+.nav__cart-container {
+  cursor: pointer;
+  position: relative;
 }
 
 @media only screen and (max-width: 600px) {

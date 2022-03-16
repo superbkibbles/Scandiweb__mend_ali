@@ -16,6 +16,15 @@
   pointer-events: all;
 }
 
+.mini-cart__title {
+  margin-bottom: 23px;
+  font-weight: 500;
+}
+
+.mini-cart_bold {
+  font-weight: 700;
+}
+
 .mini-cart {
   position: absolute;
   background-color: var(--color-white);
@@ -56,7 +65,7 @@
     transform: translateX(-50%);
   }
   .container {
-    top:200px;
+    top: 200px;
     display: flex;
   }
 }

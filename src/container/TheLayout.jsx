@@ -15,21 +15,13 @@ class TheLayout extends React.Component {
   render() {
     const { children, openCloseDropdown } = this.props;
     return (
-      <div style={{ position: "relative" }}>
+      <div className="main">
         <MiniCart />
         <div onClick={() => openCloseDropdown(false)} className="main">
           <div onClick={(e) => e.stopPropagation()}>
             <Nav />
           </div>
-          {/* <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                }}
-              > */}
-          {/* <WomenPage /> */}
           {children}
-          {/* </div> */}
         </div>
       </div>
     );

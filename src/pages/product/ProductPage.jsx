@@ -132,7 +132,7 @@ class ProductPage extends React.Component {
           <SuccessButton
             onClick={this.handleAddToCart}
             title="ADD TO CART"
-            style={{ width: "100%", padding: "16px 0", marginBottom: "40px" }}
+            className="btn__success-1"
           />
           <div> {ReactHtmlParser(product.description)} </div>
         </div>

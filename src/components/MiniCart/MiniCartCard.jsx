@@ -75,10 +75,7 @@ class MiniCartCard extends React.Component {
     const count = cart.products[i].count;
     return (
       <div className="mini-cart__card">
-        <div
-          style={{ position: "absolute", right: 0, top: 0, cursor: "pointer" }}
-          onClick={() => removeProduct(id)}
-        >
+        <div className="mini-cart__delete" onClick={() => removeProduct(id)}>
           x
         </div>
         <div className="details">
@@ -98,11 +95,7 @@ class MiniCartCard extends React.Component {
               onClick={() => count > 1 && decrementCount(id, count)}
             />
           </div>
-          <img
-            src={img}
-            alt="product"
-            style={{ height: "137px", width: "105px", objectFit: "contain" }}
-          />
+          <img src={img} alt="product" className="mini-cart__img" />
         </div>
       </div>
     );

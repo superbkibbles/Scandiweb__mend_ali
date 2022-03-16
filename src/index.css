@@ -88,3 +88,11 @@ p {
 h1 {
   margin: 0;
 }
+
+.image-contain {
+  object-fit: contain;
+}
+
+.main {
+  position: relative;
+}

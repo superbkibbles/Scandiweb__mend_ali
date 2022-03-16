@@ -7,6 +7,25 @@
   position: relative;
 }
 
+.cart-page__delete {
+  top: 0;
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.cart-page__image-container {
+  position: relative;
+  height: 185px;
+  width: 141px;
+}
+
+.cart-page__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .cart-page__details {
   display: flex;
   flex-direction: column;

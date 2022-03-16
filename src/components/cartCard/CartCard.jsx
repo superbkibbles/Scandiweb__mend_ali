@@ -50,7 +50,6 @@ class CartCard extends React.Component {
         },
       };
     });
-
   };
 
   handleRightArrow = (id, length) => {
@@ -148,10 +147,7 @@ class CartCard extends React.Component {
 
     return (
       <div className="cart-page__card">
-        <div
-          style={{ top: 0, right: 0, position: "absolute", cursor: "pointer" }}
-          onClick={() => removeProduct(id)}
-        >
+        <div className="cart-page__delete" onClick={() => removeProduct(id)}>
           x
         </div>
         <div className="cart-page__details">
@@ -174,19 +170,13 @@ class CartCard extends React.Component {
               onClick={() => count > 1 && decrementCount(id, count)}
             />
           </div>
-          <div
-            style={{ position: "relative", height: "185px", width: "141px" }}
-          >
+          <div className="cart-page__image-container">
             <div
               className="left-arrow"
               onClick={() => this.handleLeftArrow(id, img.length)}
             />
             <img
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-              }}
+              className="cart-page__img"
               src={img[this.state.activeImages[id]] ?? img[0]}
               alt="prod"
             />

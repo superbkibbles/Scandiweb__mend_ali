@@ -14,7 +14,7 @@ class Card extends React.Component {
         return (
           <div key={attribute.id} className="attributes">
             <p className="main-card__price">{attribute.name}</p>
-            <div style={{ display: "flex", gap: "5px" }}>
+            <div className="main-card__attribute-container">
               {attribute.items.map((el) => {
                 if (attribute.type === "swatch")
                   return (
@@ -54,26 +54,10 @@ class Card extends React.Component {
             width={"100%"}
             height={"100%"}
             alt="product"
-            style={{
-              objectFit: "contain",
-            }}
+            className="image-contain"
             src={img}
           />
-          {inactive && (
-            <p
-              style={{
-                position: "absolute",
-                fontSize: "24px",
-                color: "var(--color-grey)",
-                zIndex: 1,
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              OUT OF STOCK
-            </p>
-          )}
+          {inactive && <p className="main-card__out-of-stock">OUT OF STOCK</p>}
           <div
             className="main-card__cart"
             onClick={(e) => {
@@ -84,26 +68,16 @@ class Card extends React.Component {
           </div>
         </div>
         <p
-          className={"main-card__title"}
-          style={
-            inactive
-              ? {
-                  color: "var(--color-grey)",
-                }
-              : {}
-          }
+          className={`main-card__title ${
+            inactive && "main-card__text__inactive"
+          } `}
         >
           {title}
         </p>
         <p
-          className={"main-card__price"}
-          style={
-            inactive
-              ? {
-                  color: "var(--color-grey)",
-                }
-              : {}
-          }
+          className={`main-card__price ${
+            inactive && "main-card__text__inactive"
+          }`}
         >
           {price.currency.symbol}
           {price.amount}
@@ -113,8 +87,6 @@ class Card extends React.Component {
     );
   }
 }
-
-// export default memo(Card);
 
 export default memo((props) => {
   const navigate = useNavigate();

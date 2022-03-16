@@ -32,8 +32,8 @@ class MiniCart extends React.Component {
         <div className="mini-cart" onClick={(e) => e.stopPropagation()}>
           {cart.products?.length > 0 ? (
             <div>
-              <p style={{ marginBottom: "23px", fontWeight: 500 }}>
-                <span style={{ fontWeight: 700 }}>My bag</span>,{" "}
+              <p className="mini-cart__title">
+                <span className="mini-cart_bold">My bag</span>,{" "}
                 {cart.products.length} items
               </p>
               {cart.products.map((product, i) => (
@@ -55,7 +55,7 @@ class MiniCart extends React.Component {
               ))}
               <div className="total__container">
                 <p>Total</p>
-                <p style={{ fontWeight: 700 }}>
+                <p className="mini-cart_bold">
                   {currency?.activeCurrency}
                   {this.totalPrice().toFixed(2)}
                 </p>

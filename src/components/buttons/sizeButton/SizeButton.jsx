@@ -4,11 +4,10 @@ import "./sizeButton.css";
 
 class SizeButton extends React.Component {
   render() {
-    const { active, size, notAvailable, onClick, style } = this.props;
+    const { active, size, notAvailable, onClick } = this.props;
     return (
       <button
-        className={`btn__size ${active ? "btn__size__activeSize" : ""}`}
-        style={notAvailable ? [{ color: "#A6A6A6" }, style] : style}
+        className={`btn__size ${active && "btn__size__activeSize"}`}
         disabled={notAvailable}
         onClick={onClick}
       >

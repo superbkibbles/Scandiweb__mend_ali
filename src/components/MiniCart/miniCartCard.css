@@ -5,6 +5,13 @@
   position: relative;
 }
 
+.mini-cart__delete {
+  position: absolute;
+  right: -5px;
+  top: 0;
+  cursor: pointer;
+}
+
 .details {
   display: flex;
   flex-direction: column;
@@ -66,10 +73,7 @@
 }
 
 .plus {
-  /* display: flex; */
-  /* justify-content: center; */
   font-size: 14px;
-  /* align-items: center; */
   width: 25px;
   height: 25px;
   border: 1px solid var(--color-black);
@@ -116,13 +120,17 @@
   justify-content: center;
   font-size: 14px;
   align-items: center;
-  /* width: 25px;
-  height: 25px; */
   padding: 5px;
   border: 1px solid var(--color-black);
   font-weight: 500;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.mini-cart__img {
+  height: 137px;
+  width: 105px;
+  object-fit: contain;
 }
 
 .activeSize {

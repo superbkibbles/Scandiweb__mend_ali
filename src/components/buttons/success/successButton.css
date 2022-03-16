@@ -14,3 +14,9 @@
 .btn__success:active {
   box-shadow: var(--shadow-card);
 }
+
+.btn__success-1 {
+  width: 100%;
+  padding: 16px 0;
+  margin-bottom: 40px;
+}
