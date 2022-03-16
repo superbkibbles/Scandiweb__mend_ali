@@ -1,32 +1,26 @@
 import React from "react";
 
 import CardList from "../../components/cardList/CardList";
-import client from "../../client";
-import { GET_PRODUCTS_BY_CATEGORY } from "../../gql/queries";
+import { getProductsByCategory } from "../../actions";
+import { connect } from "react-redux";
 
 class ClothesPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      category: {},
-    };
-  }
-  async componentDidMount() {
-    try {
-      const { data } = await client.query({
-        query: GET_PRODUCTS_BY_CATEGORY,
-        variables: { categoryid: "clothes" },
-      });
-      this.setState({ category: data.category });
-    } catch (e) {
-      console.log(e);
-    }
+  componentDidMount() {
+    const { getProductsByCategory } = this.props;
+
+    getProductsByCategory("clothes");
   }
 
   render() {
-    const { name, products } = this.state.category;
+    const { name, products } = this.props.products;
     return <CardList items={products} title={name} />;
   }
 }
 
-export default ClothesPage;
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+  };
+};
+
+export default connect(mapStateToProps, { getProductsByCategory })(ClothesPage);

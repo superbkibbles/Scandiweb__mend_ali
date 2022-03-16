@@ -67,7 +67,7 @@ class MiniCartCard extends React.Component {
       selectedArtibutes,
       incrementCount,
       decrementCount,
-      id,
+      // id,
       i,
       cart,
       removeProduct,
@@ -75,7 +75,7 @@ class MiniCartCard extends React.Component {
     const count = cart.products[i].count;
     return (
       <div className="mini-cart__card">
-        <div className="mini-cart__delete" onClick={() => removeProduct(id)}>
+        <div className="mini-cart__delete" onClick={() => removeProduct(i)}>
           x
         </div>
         <div className="details">
@@ -84,15 +84,15 @@ class MiniCartCard extends React.Component {
             {price.currency.symbol}
             {Number(price.amount).toFixed(2)}
           </div>
-          {this._renderArrtibutes(attributes, selectedArtibutes, id)}
+          {this._renderArrtibutes(attributes, selectedArtibutes, i)}
         </div>
         <div className="items">
           <div className="increments">
-            <div className="plus" onClick={() => incrementCount(id, count)} />
+            <div className="plus" onClick={() => incrementCount(i, count)} />
             <div className="count">{count}</div>
             <div
               className="minus"
-              onClick={() => count > 1 && decrementCount(id, count)}
+              onClick={() => count > 1 && decrementCount(i, count)}
             />
           </div>
           <img src={img} alt="product" className="mini-cart__img" />

@@ -1,13 +1,12 @@
-import React, { memo } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./card.css";
-// import pic from "./baby.jpg";
 import cartIcon from "../../assets/icons/cart-white.png";
 import SizeButton from "../buttons/sizeButton/SizeButton";
 
 class Card extends React.Component {
-  _renderArrtibutes(attributes) {
+  _renderArrtibutes(attributes, selectedArtibutes, productID) {
     return (
       attributes?.length > 0 &&
       attributes.map((attribute) => {
@@ -19,15 +18,38 @@ class Card extends React.Component {
                 if (attribute.type === "swatch")
                   return (
                     <div
+                      onClick={() =>
+                        this.props.onAttributeClick(
+                          productID,
+                          el.id,
+                          attribute.id
+                        )
+                      }
                       key={el.id}
                       style={{
                         backgroundColor: el.value,
                       }}
-                      className="swatch"
+                      className={`swatch ${
+                        selectedArtibutes &&
+                        selectedArtibutes[attribute.id] === el.id
+                          ? "swatch__active"
+                          : ""
+                      }`}
                     />
                   );
                 return (
                   <SizeButton
+                    onClick={() =>
+                      this.props.onAttributeClick(
+                        productID,
+                        el.id,
+                        attribute.id
+                      )
+                    }
+                    active={
+                      selectedArtibutes &&
+                      selectedArtibutes[attribute.id] === el.id
+                    }
                     key={el.id}
                     notAvailable={false}
                     size={el.value}
@@ -40,9 +62,21 @@ class Card extends React.Component {
       })
     );
   }
+
   render() {
-    const { title, price, inactive, img, category, id, attributes, navigate } =
-      this.props;
+    const {
+      title,
+      price,
+      inactive,
+      img,
+      category,
+      id,
+      attributes,
+      navigate,
+      onCartClick,
+      i,
+      selectedArtibutes,
+    } = this.props;
 
     return (
       <div className={`main-card ${inactive ? "main-card__inactive" : ""}`}>
@@ -58,13 +92,8 @@ class Card extends React.Component {
             src={img}
           />
           {inactive && <p className="main-card__out-of-stock">OUT OF STOCK</p>}
-          <div
-            className="main-card__cart"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <img src={cartIcon} alt="" />
+          <div className="main-card__cart" onClick={(e) => onCartClick(e, i)}>
+            <img src={cartIcon} alt="cart" />
           </div>
         </div>
         <p
@@ -82,13 +111,13 @@ class Card extends React.Component {
           {price.currency.symbol}
           {price.amount}
         </p>
-        {this._renderArrtibutes(attributes)}
+        {this._renderArrtibutes(attributes, selectedArtibutes, id)}
       </div>
     );
   }
 }
 
-export default memo((props) => {
+export default (props) => {
   const navigate = useNavigate();
   return <Card navigate={navigate} {...props} />;
-});
+};

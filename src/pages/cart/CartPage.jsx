@@ -8,6 +8,7 @@ import "./cartPage.css";
 class CartPage extends React.Component {
   render() {
     const { cart, currency } = this.props;
+
     return (
       <div className="cart-page">
         <h1 className="cart-page__head">CART</h1>
@@ -15,7 +16,7 @@ class CartPage extends React.Component {
           <>
             {cart.products.map((product, i) => (
               <CartCard
-                key={product.product.id}
+                key={product.product.id + i}
                 id={product.product.id}
                 i={i}
                 title={product.product.name}

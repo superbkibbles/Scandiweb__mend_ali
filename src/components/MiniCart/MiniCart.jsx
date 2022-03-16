@@ -38,7 +38,7 @@ class MiniCart extends React.Component {
               </p>
               {cart.products.map((product, i) => (
                 <MiniCartCard
-                  key={product.product.id}
+                  key={product.product.id + i}
                   id={product.product.id}
                   i={i}
                   title={product.product.name}

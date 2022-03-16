@@ -7,3 +7,5 @@ export const REMOVE_PRODUCT = "removeProduuct";
 export const OPEN__CLOSE_DROPDOWN = "openDropdown";
 export const CHANGE_CURRENCY = "changeCurrency";
 export const GET_ALL_CURRENCIES = "getAllCurrencies";
+export const GET_PRODUCTS_BY_CATEGORY_REDUCER = "getProductsByCategory";
+export const CHANGE_ALL_PRODUCT_ATTRIBUTE = "changeProductAttribute";

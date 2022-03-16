@@ -7,6 +7,7 @@ import {
   decrementCount,
   removeProduct,
 } from "../../actions";
+import SizeButton from "../buttons/sizeButton/SizeButton";
 import "./cartCard.css";
 
 class CartCard extends React.Component {
@@ -109,18 +110,15 @@ class CartCard extends React.Component {
                   />
                 );
               return (
-                <div
+                <SizeButton
                   onClick={() =>
                     this.onAttributeClick(productID, el.id, attribute.id)
                   }
+                  active={selectedArtibutes[attribute.id] === el.id}
                   key={el.id}
-                  className={`cart-page__size ${
-                    selectedArtibutes[attribute.id] === el.id &&
-                    "cart-page__activeSize"
-                  }`}
-                >
-                  {el.value}
-                </div>
+                  notAvailable={false}
+                  size={el.value}
+                />
               );
             })}
           </div>
@@ -147,27 +145,27 @@ class CartCard extends React.Component {
 
     return (
       <div className="cart-page__card">
-        <div className="cart-page__delete" onClick={() => removeProduct(id)}>
+        <div className="cart-page__delete" onClick={() => removeProduct(i)}>
           x
         </div>
         <div className="cart-page__details">
           <div className="cart-page__title">{title}</div>
           <div className="cart-page__price">
             {price.currency.symbol}
-            {Number(price.amount * count).toFixed(2)}
+            {Number(price.amount).toFixed(2)}
           </div>
-          {this._renderArrtibutes(attributes, selectedArtibutes, id)}
+          {this._renderArrtibutes(attributes, selectedArtibutes, i)}
         </div>
         <div className="cart-page__items">
           <div className="cart-page__increments">
             <div
               className="cart-page__plus"
-              onClick={() => incrementCount(id, count)}
+              onClick={() => incrementCount(i, count)}
             />
             <div className="cart-page__count">{count}</div>
             <div
               className="cart-page__minus"
-              onClick={() => count > 1 && decrementCount(id, count)}
+              onClick={() => count > 1 && decrementCount(i, count)}
             />
           </div>
           <div className="cart-page__image-container">
