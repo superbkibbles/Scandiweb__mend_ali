@@ -13,10 +13,9 @@ export default function productReducer(state = [], action) {
       )[0];
       const a = product.selectedArtibutes
         ? product
-        : { ...product, selectedArtibutes: [] };
+        : { ...product, selectedArtibutes: {} };
 
       a.selectedArtibutes[action.payload.attributeID] = action.payload.id;
-
       const newD = state.products.map((p) =>
         p.id === action.payload.productID ? a : p
       );

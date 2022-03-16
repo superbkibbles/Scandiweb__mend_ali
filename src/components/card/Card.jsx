@@ -6,6 +6,12 @@ import cartIcon from "../../assets/icons/cart-white.png";
 import SizeButton from "../buttons/sizeButton/SizeButton";
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: "",
+    };
+  }
   _renderArrtibutes(attributes, selectedArtibutes, productID) {
     return (
       attributes?.length > 0 &&
@@ -92,7 +98,19 @@ class Card extends React.Component {
             src={img}
           />
           {inactive && <p className="main-card__out-of-stock">OUT OF STOCK</p>}
-          <div className="main-card__cart" onClick={(e) => onCartClick(e, i)}>
+          <div
+            className="main-card__cart"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (
+                !selectedArtibutes ||
+                Object.keys(selectedArtibutes).length !== attributes.length
+              )
+                return this.setState({ error: "Please select all attributes" });
+              this.setState({ error: "" });
+              onCartClick(e, i);
+            }}
+          >
             <img src={cartIcon} alt="cart" />
           </div>
         </div>
@@ -112,12 +130,15 @@ class Card extends React.Component {
           {price.amount}
         </p>
         {this._renderArrtibutes(attributes, selectedArtibutes, id)}
+        <p className="error-message">{this.state.error}</p>
       </div>
     );
   }
 }
 
-export default (props) => {
+const CardContainer = (props) => {
   const navigate = useNavigate();
   return <Card navigate={navigate} {...props} />;
 };
+
+export default CardContainer;

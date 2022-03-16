@@ -7,11 +7,11 @@ import "./cardList.css";
 
 class CardList extends React.Component {
   onCartClick = (e, i) => {
-    const { items } = this.props;
-
     e.stopPropagation();
-    const { addToCart } = this.props;
-    addToCart(items[i], items[i].selectedArtibutes);
+    const { items, addToCart } = this.props;
+
+    items[i].selectedArtibutes &&
+      addToCart(items[i], items[i].selectedArtibutes);
   };
 
   onAttributeClick = (productID, id, attributeID) => {

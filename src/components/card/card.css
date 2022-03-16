@@ -15,6 +15,9 @@
 .main-card:hover {
   box-shadow: var(--shadow-card);
 }
+.main-card:hover .error-message {
+  opacity: 1;
+}
 
 .main-card:hover .attributes {
   opacity: 1;
@@ -77,6 +80,14 @@
 
 .main-card__text__inactive {
   color: var(--color-grey);
+}
+
+.error-message {
+  font-size: 18px;
+  color: var(--color-danger);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-top: 5px;
 }
 
 .main-card__out-of-stock {
