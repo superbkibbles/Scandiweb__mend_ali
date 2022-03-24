@@ -1,7 +1,6 @@
 import client from "../client";
 import {
   GET_PRODUCTS_BY_CATEGORY_REDUCER,
-  CHANGE_ALL_PRODUCT_ATTRIBUTE,
 } from "../constants";
 import { GET_PRODUCTS_BY_CATEGORY } from "../gql/queries";
 
@@ -21,9 +20,9 @@ export const getProductsByCategory = (category) => async (dispatch) => {
   }
 };
 
-export const changeProductsAttribute = (value) => async (dispatch) => {
-  dispatch({
-    type: CHANGE_ALL_PRODUCT_ATTRIBUTE,
-    payload: value,
-  });
-};
+// export const changeProductsAttribute = (value) => async (dispatch) => {
+//   dispatch({
+//     type: CHANGE_ALL_PRODUCT_ATTRIBUTE,
+//     payload: value,
+//   });
+// };

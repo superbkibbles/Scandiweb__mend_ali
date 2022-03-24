@@ -2,20 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Card from "../card/Card";
-import { addToCart, changeProductsAttribute } from "../../actions";
+import { addToCart } from "../../actions";
 import "./cardList.css";
 
 class CardList extends React.Component {
-  onCartClick = (e, i) => {
+  onCartClick = (e, i, arttibutes) => {
     e.stopPropagation();
     const { items, addToCart } = this.props;
 
-    (items[i].selectedArtibutes || items[i].attributes.length < 1) &&
-      addToCart(items[i], items[i].selectedArtibutes);
-  };
-
-  onAttributeClick = (productID, id, attributeID) => {
-    this.props.changeProductsAttribute({ productID, id, attributeID });
+    (arttibutes || arttibutes.length < 1) &&
+      addToCart(items[i], arttibutes);
   };
 
   render() {
@@ -28,9 +24,7 @@ class CardList extends React.Component {
           {items?.map((item, i) => (
             <Card
               category={title}
-              onAttributeClick={this.onAttributeClick}
               key={item.id}
-              selectedArtibutes={item?.selectedArtibutes}
               i={i}
               onCartClick={this.onCartClick}
               id={item.id}
@@ -57,6 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addToCart, changeProductsAttribute })(
-  CardList
-);
+export default connect(mapStateToProps, { addToCart })(CardList);

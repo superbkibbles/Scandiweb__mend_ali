@@ -10,9 +10,17 @@ class Card extends React.Component {
     super(props);
     this.state = {
       error: "",
+      selectedArtibutes: {},
     };
   }
-  _renderArrtibutes(attributes, selectedArtibutes, productID) {
+
+  onAttributeClick = (id, attributeID) => {
+    this.setState((prevState) => ({
+      selectedArtibutes: { ...prevState.selectedArtibutes, [attributeID]: id },
+    }));
+  };
+
+  _renderArrtibutes(attributes) {
     return (
       attributes?.length > 0 &&
       attributes.map((attribute) => {
@@ -25,19 +33,20 @@ class Card extends React.Component {
                   return (
                     <div
                       onClick={() =>
-                        this.props.onAttributeClick(
-                          productID,
-                          el.id,
-                          attribute.id
-                        )
+                        // this.props.onAttributeClick(
+                        //   productID,
+                        //   el.id,
+                        //   attribute.id
+                        // )
+                        this.onAttributeClick(el.id, attribute.id)
                       }
                       key={el.id}
                       style={{
                         backgroundColor: el.value,
                       }}
                       className={`swatch ${
-                        selectedArtibutes &&
-                        selectedArtibutes[attribute.id] === el.id
+                        this.state.selectedArtibutes &&
+                        this.state.selectedArtibutes[attribute.id] === el.id
                           ? "swatch__active"
                           : ""
                       }`}
@@ -46,15 +55,16 @@ class Card extends React.Component {
                 return (
                   <SizeButton
                     onClick={() =>
-                      this.props.onAttributeClick(
-                        productID,
-                        el.id,
-                        attribute.id
-                      )
+                      // this.props.onAttributeClick(
+                      //   productID,
+                      //   el.id,
+                      //   attribute.id
+                      // )
+                      this.onAttributeClick(el.id, attribute.id)
                     }
                     active={
-                      selectedArtibutes &&
-                      selectedArtibutes[attribute.id] === el.id
+                      this.state.selectedArtibutes &&
+                      this.state.selectedArtibutes[attribute.id] === el.id
                     }
                     key={el.id}
                     notAvailable={false}
@@ -81,7 +91,6 @@ class Card extends React.Component {
       navigate,
       onCartClick,
       i,
-      selectedArtibutes,
     } = this.props;
 
     return (
@@ -104,8 +113,8 @@ class Card extends React.Component {
               e.stopPropagation();
               if (!inactive) {
                 if (
-                  (!selectedArtibutes ||
-                    Object.keys(selectedArtibutes).length !==
+                  (!this.state.selectedArtibutes ||
+                    Object.keys(this.state.selectedArtibutes).length !==
                       attributes.length) &&
                   attributes.length > 0
                 )
@@ -113,7 +122,7 @@ class Card extends React.Component {
                     error: "Please select all attributes",
                   });
                 this.setState({ error: "" });
-                onCartClick(e, i);
+                onCartClick(e, i, this.state.selectedArtibutes);
               }
             }}
           >
@@ -135,7 +144,7 @@ class Card extends React.Component {
           {price.currency.symbol}
           {price.amount}
         </p>
-        {this._renderArrtibutes(attributes, selectedArtibutes, id)}
+        {this._renderArrtibutes(attributes)}
         <p className="error-message">{this.state.error}</p>
       </div>
     );
