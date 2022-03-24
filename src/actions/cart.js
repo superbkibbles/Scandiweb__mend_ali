@@ -14,11 +14,10 @@ export const openCloseCart = (isOpen) => async (dispatch) => {
   });
 };
 
-export const addToCart = (productID, artibutes) => async (dispatch) => {
-  const req = { product: productID, artibutes, count: 1 };
+export const addToCart = (product, artibutes, i) => async (dispatch) => {
   dispatch({
     type: ADD_TO_CART,
-    payload: req,
+    payload: { product: product, artibutes: artibutes, count: 1, i },
   });
 };
 

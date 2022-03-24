@@ -4,10 +4,7 @@ export const GET_ALL_PRODUCTS = gql`
   {
     category {
       products {
-        id
-        brand
-        description
-        category
+        name
         attributes {
           id
           name
@@ -17,13 +14,6 @@ export const GET_ALL_PRODUCTS = gql`
             value
             id
           }
-        }
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
         }
       }
     }

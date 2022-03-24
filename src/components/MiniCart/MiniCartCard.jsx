@@ -10,11 +10,7 @@ import {
 import { connect } from "react-redux";
 
 class MiniCartCard extends React.Component {
-  onAttributeClick = (productID, id, attributeID) => {
-    this.props.changeArtibutes({ productID, id, attributeID });
-  };
-
-  _renderArrtibutes(attributes, selectedArtibutes, productID) {
+  _renderArrtibutes(attributes, selectedArtibutes) {
     return (
       attributes?.length > 0 &&
       attributes.map((attribute) => {
@@ -24,9 +20,6 @@ class MiniCartCard extends React.Component {
               if (attribute.type === "swatch")
                 return (
                   <div
-                    onClick={() =>
-                      this.onAttributeClick(productID, el.id, attribute.id)
-                    }
                     key={el.id}
                     style={{
                       backgroundColor: el.value,
@@ -40,9 +33,6 @@ class MiniCartCard extends React.Component {
                 );
               return (
                 <div
-                  onClick={() =>
-                    this.onAttributeClick(productID, el.id, attribute.id)
-                  }
                   key={el.id}
                   className={`size ${
                     selectedArtibutes[attribute.id] === el.id && "activeSize"
@@ -84,7 +74,7 @@ class MiniCartCard extends React.Component {
             {price.currency.symbol}
             {Number(price.amount).toFixed(2)}
           </div>
-          {this._renderArrtibutes(attributes, selectedArtibutes, i)}
+          {this._renderArrtibutes(attributes, selectedArtibutes)}
         </div>
         <div className="items">
           <div className="increments">

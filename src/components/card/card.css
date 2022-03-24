@@ -9,7 +9,6 @@
 
 .main-card__inactive {
   filter: grayscale(100%);
-  pointer-events: none;
 }
 
 .main-card:hover {

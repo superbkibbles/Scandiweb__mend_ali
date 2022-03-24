@@ -4,13 +4,19 @@
   border: 1px solid var(--color-black);
   color: var(--color-black);
   font-weight: 600;
-  transition: box-shadow .2s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .btn__regular:hover {
-    box-shadow: var(--shadow-light);
+  box-shadow: var(--shadow-light);
 }
 
 .btn__regular:active {
-    box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card);
+}
+
+.btn__regular-1 {
+  width: 100%;
+  padding: 16px 0;
+  margin-bottom: 40px;
 }

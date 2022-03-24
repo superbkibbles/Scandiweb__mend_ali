@@ -10,7 +10,7 @@ class CardList extends React.Component {
     e.stopPropagation();
     const { items, addToCart } = this.props;
 
-    items[i].selectedArtibutes &&
+    (items[i].selectedArtibutes || items[i].attributes.length < 1) &&
       addToCart(items[i], items[i].selectedArtibutes);
   };
 
@@ -20,6 +20,7 @@ class CardList extends React.Component {
 
   render() {
     const { title, items, currency } = this.props;
+
     return (
       <div className="card-list__container">
         <h1 className="card-list__head">{title}</h1>

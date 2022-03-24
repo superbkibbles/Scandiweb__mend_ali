@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import {
   OPEN__CLOSE_CART,
   ADD_TO_CART,
@@ -17,6 +19,21 @@ export default function cartReducer(state = initState, action) {
     case OPEN__CLOSE_CART:
       return { ...state, isOpen: action.payload };
     case ADD_TO_CART:
+      // console.log(action.payload);
+      // console.log(state.products)
+      const prds = state.products.filter(
+        (p) => p.product.id === action.payload.product.id
+      );
+
+      if (prds?.length > 0) {
+        prds.forEach((p) => {
+          if (_.isEqual(p.artibutes, action.payload.artibutes))
+            return { ...state };
+        });
+        // check any of filtered has the same attributes
+        // if yes then only increment the count
+      }
+      // action.payload.product.selectedArtibutes = null;
       return {
         ...state,
         products: [...state.products, action.payload],

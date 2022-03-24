@@ -16,6 +16,10 @@
   height: 610px;
 }
 
+.grayFilter {
+  filter: grayscale(100%);
+}
+
 .product-page__details {
   margin-left: 60px;
   width: 300px;

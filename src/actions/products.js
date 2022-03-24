@@ -11,6 +11,7 @@ export const getProductsByCategory = (category) => async (dispatch) => {
       query: GET_PRODUCTS_BY_CATEGORY,
       variables: { categoryid: category },
     });
+    
     dispatch({
       type: GET_PRODUCTS_BY_CATEGORY_REDUCER,
       payload: data.category,

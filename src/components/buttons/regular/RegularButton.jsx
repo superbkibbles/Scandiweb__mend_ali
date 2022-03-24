@@ -4,9 +4,9 @@ import "./regularButton.css";
 
 class RegularButton extends React.Component {
   render() {
-    const { title, onClick } = this.props;
+    const { title, onClick, className } = this.props;
     return (
-      <button className="btn__regular" onClick={onClick}>
+      <button className={`btn__regular ${className}`}  onClick={onClick}>
         {title}
       </button>
     );

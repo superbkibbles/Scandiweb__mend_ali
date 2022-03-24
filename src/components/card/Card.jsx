@@ -102,13 +102,19 @@ class Card extends React.Component {
             className="main-card__cart"
             onClick={(e) => {
               e.stopPropagation();
-              if (
-                !selectedArtibutes ||
-                Object.keys(selectedArtibutes).length !== attributes.length
-              )
-                return this.setState({ error: "Please select all attributes" });
-              this.setState({ error: "" });
-              onCartClick(e, i);
+              if (!inactive) {
+                if (
+                  (!selectedArtibutes ||
+                    Object.keys(selectedArtibutes).length !==
+                      attributes.length) &&
+                  attributes.length > 0
+                )
+                  return this.setState({
+                    error: "Please select all attributes",
+                  });
+                this.setState({ error: "" });
+                onCartClick(e, i);
+              }
             }}
           >
             <img src={cartIcon} alt="cart" />
